@@ -26,6 +26,7 @@ local f = b(a)
 local function g(h)
     local i = game:HttpGet(h)
     if i then
+        warn("Launching Atom - Client")
         loadstring(i)()
     else
         warn("Can't load Atom - Client")
