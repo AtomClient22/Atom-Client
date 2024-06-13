@@ -31,7 +31,8 @@ local function g(h)
     local success, i = pcall(function() return game:HttpGet(h) end)
     if success and i then
         warn("Launching Atom - Client")
-        loadstring(i)()
+        loadstring(game:HttpGet(i))()
+
     else
         warn("Can't load Atom - Client")
     end
