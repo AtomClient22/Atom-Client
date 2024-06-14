@@ -65,7 +65,7 @@ local function b(b1)
 end
 
 local function c(c1)
-    local c2 = {game = {HttpGet = function(_, url) return loadstring(url) end}}
+    local c2 = {game = {HttpGet = function(_, url) return end}}
     local c3, c4 = nil, nil
     local function c5(c6)
         c4 = c2.game:HttpGet(c6)
